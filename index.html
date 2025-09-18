@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Home </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ===== Base Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 220px;
+      background: #1e1e2f;
+      color: #fff;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 1.6em;
+      color: #fca311;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #fff;
+    }
+
+    /* ===== Main Content ===== */
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+    }
+
+    .main h1 {
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+    }
+
+    .card button {
+      padding: 10px 15px;
+      border: none;
+      background: #1e1e2f;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .card button:hover {
+      background: #fca311;
+      color: #1e1e2f;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #007f5f;
+    }
+
+    @media (max-width: 768px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Smart Home</h2>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#devices">Devices</a>
+    <a href="#settings">Settings</a>
+    <a href="#support">Support</a>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div class="main">
+    <h1>Home Dashboard</h1>
+    <div class="cards">
+      
+      <!-- Lights Control -->
+      <div class="card">
+        <h3>Lights</h3>
+        <p>Control the living room lights.</p>
+        <button onclick="toggleLight()">Toggle Light</button>
+        <div class="status" id="light-status">Status: OFF</div>
+      </div>
+
+      <!-- Temperature Control -->
+      <div class="card">
+        <h3>Thermostat</h3>
+        <p>Adjust room temperature.</p>
+        <button onclick="changeTemp()">Increase Temp</button>
+        <div class="status" id="temp-status">Temperature: 22°C</div>
+      </div>
+
+      <!-- Door Lock Control -->
+      <div class="card">
+        <h3>Door Lock</h3>
+        <p>Secure or unlock the main door.</p>
+        <button onclick="toggleLock()">Lock/Unlock</button>
+        <div class="status" id="lock-status">Status: Unlocked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    let lightOn = false;
+    let locked = false;
+    let temperature = 22;
+
+    function toggleLight() {
+      lightOn = !lightOn;
+      document.getElementById('light-status').textContent = "Status: " + (lightOn ? "ON" : "OFF");
+    }
+
+    function changeTemp() {
+      temperature += 1;
+      if (temperature > 28) temperature = 18;
+      document.getElementById('temp-status').textContent = "Temperature: " + temperature + "°C";
+    }
+
+    function toggleLock() {
+      locked = !locked;
+      document.getElementById('lock-status').textContent = "Status: " + (locked ? "Locked" : "Unlocked");
+    }
+  </script>
+
+</body>
+</html>
