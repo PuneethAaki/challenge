@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartHouse - Home Automation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        header {
+            background: #14213d;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+        }
+
+        nav {
+            background: #fca311;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            padding: 15px 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #e07a00;
+        }
+
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .devices {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .device {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 280px;
+            transition: transform 0.3s;
+        }
+
+        .device:hover {
+            transform: scale(1.05);
+        }
+
+        .device h3 {
+            margin-bottom: 15px;
+        }
+
+        .device button {
+            padding: 10px 20px;
+            background: #14213d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .device button:hover {
+            background: #000814;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #007f5f;
+        }
+
+        footer {
+            background: #14213d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .devices {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SmartHouse</h1>
+        <p>Automate your home. Live smarter.</p>
+    </header>
+
+    <nav>
+        <a href="#devices">Devices</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="section" id="devices">
+        <h2>Control Your Devices</h2>
+        <div class="devices">
+            <div class="device">
+                <h3>Smart Lights</h3>
+                <button onclick="toggleDevice('light')">Toggle Light</button>
+                <div class="status" id="light-status">Status: OFF</div>
+            </div>
+            <div class="device">
+                <h3>Thermostat</h3>
+                <button onclick="adjustTemp()">Set Temperature</button>
+                <div class="status" id="temp-status">Temperature: 22°C</div>
+            </div>
+            <div class="device">
+                <h3>Security System</h3>
+                <button onclick="toggleDevice('security')">Arm/Disarm</button>
+                <div class="status" id="security-status">Status: Disarmed</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <h2>About SmartHouse</h2>
+        <p>SmartHouse helps you manage your home remotely and efficiently. Control lighting, temperature, and security all from one platform. Seamless integration with your lifestyle.</p>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@smarthouse.com</p>
+        <p>Phone: +1 (555) 123-4567</p>
+    </section>
+
+    <footer>
+        &copy; 2025 SmartHouse Inc. All rights reserved.
+    </footer>
+
+    <script>
+        let isLightOn = false;
+        let isSecurityArmed = false;
+        let currentTemp = 22;
+
+        function toggleDevice(device) {
+            if (device === 'light') {
+                isLightOn = !isLightOn;
+                document.getElementById('light-status').innerText = "Status: " + (isLightOn ? "ON" : "OFF");
+            } else if (device === 'security') {
+                isSecurityArmed = !isSecurityArmed;
+                document.getElementById('security-status').innerText = "Status: " + (isSecurityArmed ? "Armed" : "Disarmed");
+            }
+        }
+
+        function adjustTemp() {
+            currentTemp += 1;
+            if (currentTemp > 28) currentTemp = 18;
+            document.getElementById('temp-status').innerText = "Temperature: " + currentTemp + "°C";
+        }
+    </script>
+
+</body>
+</html>
